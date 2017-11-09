@@ -6,11 +6,17 @@ $token='98765';
 $user1 = array(
 	'username' => 'usernametest1',
 	'password' => 'Moodle2011',
+	'firstname' => 'firstname1',
+	'lastname' => 'lastname1',
+	'email' => 'email1@email.com'
 	);
 	
 $user2 = array(
 	'username' => 'usernametest2',
-	'password' => 'Moodle2012'
+	'password' => 'Moodle2012',
+	'firstname' => 'firstname2',
+	'lastname' => 'lastname2',
+	'email' => 'email1@email.com'	
 	);
 	
 $lista = array($user1, $user2);

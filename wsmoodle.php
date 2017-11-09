@@ -1,30 +1,35 @@
 <?php
 	include 'make_test.php';
 	
-	$domain='http://test2.uao.edu.co/siga';
+	$domain='https://test2.uao.edu.co/siga';
 	$token='b90fbf8066a4752a17619e8b9d79c9ca';
 	$function_name='core_user_create_users';
 	$restformat = '&moodlewsrestformat=xml';
 	
 	$serverurl = $domain . '/webservice/rest/server.php'. '?wstoken=' . $token . '&wsfunction='.$function_name;
 	
-	$user_fields = array();
-	$n='1';
-	$user_fields[0]['username'] = 'testusername'.$n;
-	$user_fields[0]['password'] = 'testpassword'.$n;
-	$user_fields[0]['firstname'] = 'testfirstname'.$n;
-	$user_fields[0]['lastname'] = 'testlastname'.$n;
-	$user_fields[0]['email'] = 'testemail'.$n.'@moodle.com';
-	$n='2';
-	$user_fields[1]['username'] = 'testusername'.$n;
-	$user_fields[1]['password'] = 'testpassword'.$n;
-	$user_fields[1]['firstname'] = 'testfirstname'.$n;
-	$user_fields[1]['lastname'] = 'testlastname'.$n;
-	$user_fields[1]['email'] = 'testemail'.$n.'@moodle.com';
-
-	$curl_post_data = array('users'=>$user_fields);
+	$user1 = array(
+	'username' => 'usernametest3',
+	'password' => 'Moodle2011',
+	'firstname' => 'firstname3',
+	'lastname' => 'lastname3',
+	'email' => 'email3@email.com'
+	);
+	
+	$user2 = array(
+	'username' => 'usernametest4',
+	'password' => 'Moodle2012',
+	'firstname' => 'firstname4',
+	'lastname' => 'lastname4',
+	'email' => 'email4@email.com'	
+	);
+	
+	$lista = array($user1, $user2);
+	$curl_post_data = array('users'=>$lista);
+	
 	$str = http_build_query($curl_post_data);
 
+	//$str = urlencode($curl_post_data);
 	echo 'Array!';
 	echo '<br>';
 	var_dump($curl_post_data);
@@ -44,11 +49,14 @@
 	echo '***********************';
 	echo '<br>';	
 
+	//$curl=curl_init('http://test2.uao.edu.co/wstest/ws_show.php?token='.$token);
 	$curl=curl_init($serverurl . $restformat);
-	curl_setopt($curl, CURLOPT_POST, true);
+	// $curl=curl_init($serverurl . $restformat . '&' . $str);
+	curl_setopt($curl, CURLOPT_POST, 1);
 	curl_setopt($curl, CURLOPT_POSTFIELDS, $str);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-type: application/x-www-form-urlencoded'));
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 	$curl_response = curl_exec($curl);
 	if ($curl_response === false) {
 		$info = curl_getinfo($curl);
