@@ -1,7 +1,7 @@
 <?php
 	include 'make_test.php';
 	
-	$domain='https://test2.uao.edu.co/siga';
+	$domain='http://test2.uao.edu.co/siga';
 	$token='b90fbf8066a4752a17619e8b9d79c9ca';
 	$function_name='core_user_create_users';
 	$restformat = '&moodlewsrestformat=xml';
@@ -56,7 +56,7 @@
 	curl_setopt($curl, CURLOPT_POSTFIELDS, $str);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-type: application/x-www-form-urlencoded'));
-	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+	//curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
 	$curl_response = curl_exec($curl);
 	if ($curl_response === false) {
 		$info = curl_getinfo($curl);
