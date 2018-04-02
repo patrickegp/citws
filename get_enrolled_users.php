@@ -1,19 +1,18 @@
 <?php
 /* *******************************************************************
-	Webservice cliente para obtener usuarios de moodle
+	Webservice cliente para obtener los usuarios matriculados en un curso
+    de moodle
    *******************************************************************
 */
-$service_url = 'https://test2.uao.edu.co/siga/webservice/rest/server.php';
 $domain='https://test2.uao.edu.co/siga';
 
 $token='98053706d7ba2a06464113449c068fdd';
-$function_name='core_user_get_users_by_field';
+$function_name='core_enrol_get_enrolled_users';
 
 $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
-$restformat = '&moodlewsrestformat=xml';
+$restformat = '&moodlewsrestformat=json';
 
-$args = array('field' => 'username', 'values' => 
-	array('0' => 'jamarquez'));
+$args = array('courseid' => 100);
 
 $url_str=http_build_query($args);
 print_r($args);
@@ -34,6 +33,5 @@ if ($curl_response === false) {
 }
 curl_close($curl);
 print "<br>";
-//var_dump($fields_string);
 print_r($curl_response);
 ?>
