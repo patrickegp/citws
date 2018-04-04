@@ -37,5 +37,19 @@
 	echo '<br>';
 	var_dump($url);
 	echo '<br>';
+	
+	echo '<br>';
+	printf("*****core_course_get_courses_by_field*****");
+	echo '<br>';
+	unset($args);
+	
+	$args['field'] = 'shortname';
+	$args['value'] = 'curso-100';
+	print_r($args);
+	$url = http_build_query($args);
+	echo '<br>';
+	var_dump($url);
+	echo '<br>';
+
 ?>
 
