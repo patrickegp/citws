@@ -51,5 +51,17 @@
 	var_dump($url);
 	echo '<br>';
 
+	echo '<br>';
+	printf("*****core_enrol_get_users_courses*****");
+	echo '<br>';
+	unset($args);
+	
+	$args['userid'] = '4';
+	print_r($args);
+	$url = http_build_query($args);
+	echo '<br>';
+	var_dump($url);
+	echo '<br>';
+
 ?>
 
