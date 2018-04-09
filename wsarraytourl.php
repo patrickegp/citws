@@ -63,5 +63,18 @@
 	var_dump($url);
 	echo '<br>';
 
+	echo '<br>';
+	printf("*****URI ARRAY*****");
+	echo '<br>';
+
+	$uri = "http:/test2.uao.edu.co/devswvirtual/api/recurso/";
+	$array_uri = explode("/", $uri);
+	var_dump($uri);
+	echo '<br>';
+	print_r($array_uri);
+	echo '<br>';
+	print(count($array_uri));
+	echo '<br>';
+	print($array_uri[count($array_uri) - 1]);
 ?>
 

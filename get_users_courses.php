@@ -34,5 +34,12 @@ if ($curl_response === false) {
 curl_close($curl);
 printf("\n*****JSON RESPONSE *****\n");
 print_r($curl_response);
+printf("\n*****ARRAY RESPONSE *****\n");
+$response_json = json_decode($curl_response);
+var_dump($response_json);
+printf("\n*****CURSOS MATRICULADOS*****\n");
+foreach($response_json as $valor) {
+	var_dump($valor->shortname);	
+}
 printf("\n*****READY! *****\n");
 ?>
