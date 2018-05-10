@@ -6,25 +6,15 @@
 $service_url = 'https://test2.uao.edu.co/siga/webservice/rest/server.php';
 $domain='https://test2.uao.edu.co/siga';
 
-// $service_url = 'https://virtual.uao.edu.co/webservice/rest/server.php';
-// $domain='https://virtual.uao.edu.co';
-
-// get token
-$file_token = "token_siga.tkn";
-$fp = fopen($file_token, "r");
-$token = fread($fp, filesize($file_token));
-
+$token = '98053706d7ba2a06464113449c068fdd';
 $function_name='core_user_get_users_by_field';
-
 $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
-$restformat = '&moodlewsrestformat=xml';
+$restformat = '&moodlewsrestformat=json';
 
 $args = array('field' => 'username', 'values' => 
 	array('0' => 'jamarquez'));
 
 $url_str=http_build_query($args);
-print_r($args);
-print_r($url_str);
 $curl=curl_init($service_url . $restformat);
 curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $url_str);
@@ -39,7 +29,22 @@ if ($curl_response === false) {
     die('error occured during curl exec. Additioanl info: ' . var_export($info));
 }
 curl_close($curl);
-print "<br>";
-//var_dump($fields_string);
+
+printf("------------------------------- \n");
+printf("core_user_create_users\n");
+printf("------------------------------- \n");
+printf("ARGUMENTOS \n");
+printf("---------- \n");
+print_r($args);
+printf("---------- \n");
+printf("URL ENCODED \n");
+printf("---------- \n");
+print_r($url_str);
+printf("\n");
+printf("---------- \n");
+printf("RESPONSE \n");
+printf("---------- \n");
 print_r($curl_response);
+printf("\n");
+printf("Success!\n");
 ?>
