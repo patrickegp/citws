@@ -1,27 +1,24 @@
 <?php
-	include 'make_test.php';
-	
-	//$domain='https://test2.uao.edu.co/siga';
-	$domain='localhost/moodle33'
-	$token='6137e2a98e69ecb014c582b8cf099d94';
+	$domain='https://test2.uao.edu.co/siga';
+	$token='98053706d7ba2a06464113449c068fdd';
 	$function_name='core_user_create_users';
-	$restformat = '&moodlewsrestformat=xml';
-	
-	$serverurl = $domain . '/webservice/rest/server.php'. '?wstoken=' . $token . '&wsfunction='.$function_name;
-	
+    $restformat = '&moodlewsrestformat=xml';
+    
+    $serverurl = $domain . '/webservice/rest/server.php'. '?wstoken=' . $token . '&wsfunction='.$function_name;
+    
 	$user1 = array(
-	'username' => 'usernametest3',
-	'password' => 'Moodle2011',
-	'firstname' => 'firstname3',
-	'lastname' => 'lastname3',
+	'username' => 'estudiante1',
+	'password' => 'Uao.2018',
+	'firstname' => 'estudiante1',
+	'lastname' => 'estudiante1',
 	'email' => 'email3@email.com'
 	);
-	
+	 
 	$user2 = array(
-	'username' => 'usernametest4',
-	'password' => 'Moodle2012',
-	'firstname' => 'firstname4',
-	'lastname' => 'lastname4',
+	'username' => 'estudiante2',
+	'password' => 'Uao.2018',
+	'firstname' => 'estudiante2',
+	'lastname' => 'estudiante2',
 	'email' => 'email4@email.com'	
 	);
 	

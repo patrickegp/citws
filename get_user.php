@@ -3,14 +3,17 @@
 	Webservice cliente para obtener usuarios de moodle
    *******************************************************************
 */
-//$service_url = 'https://test2.uao.edu.co/siga/webservice/rest/server.php';
-//$domain='https://test2.uao.edu.co/siga';
+$service_url = 'https://test2.uao.edu.co/siga/webservice/rest/server.php';
+$domain='https://test2.uao.edu.co/siga';
 
-$service_url = 'https://virtual.uao.edu.co/webservice/rest/server.php';
-$domain='https://virtual.uao.edu.co';
+// $service_url = 'https://virtual.uao.edu.co/webservice/rest/server.php';
+// $domain='https://virtual.uao.edu.co';
 
+// get token
+$file_token = "token_siga.tkn";
+$fp = fopen($file_token, "r");
+$token = fread($fp, filesize($file_token));
 
-$token='e9f71033769b939f330fb85dd60c2172';
 $function_name='core_user_get_users_by_field';
 
 $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
@@ -24,7 +27,6 @@ print_r($args);
 print_r($url_str);
 $curl=curl_init($service_url . $restformat);
 curl_setopt($curl, CURLOPT_POST, true);
-//var_dump($args);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $url_str);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: application/x-www-form-urlencoded"));
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
