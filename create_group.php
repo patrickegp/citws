@@ -1,22 +1,21 @@
 <?php
 /* *******************************************************************
-	Webservice cliente para desmatricular usuario moodle
+	Webservice cliente para crear group moodle
    *******************************************************************
 */
 $service_url = 'https://test2.uao.edu.co/siga/webservice/rest/server.php';
 $domain='https://test2.uao.edu.co/siga';
 
 $token = '98053706d7ba2a06464113449c068fdd';
-$function_name='enrol_manual_unenrol_users';
+$function_name='core_group_create_groups';
 $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
 $restformat = '&moodlewsrestformat=json';
 
+$list_groups = array();
+$group = array('courseid' => 986,  'name' => 'grupo2', 'description' => 'grupo2');
+$list_groups[] = $group;
 
-$list_students = array();
-$student = array('userid' => 11476,  'courseid' => 986, 'roleid' => 5);
-$list_students[] = $student;
-
-$args = array('enrolments' => $list_students);
+$args = array('groups' => $list_groups);
 
 $url_str=http_build_query($args);
 $curl=curl_init($service_url . $restformat);
@@ -35,7 +34,7 @@ if ($curl_response === false) {
 curl_close($curl);
 
 printf("------------------------------- \n");
-printf("enrol_manual_enrol_users\n");
+printf("core_group_create_groups\n");
 printf("------------------------------- \n");
 printf("ARGUMENTOS \n");
 printf("---------- \n");
