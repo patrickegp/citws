@@ -33,21 +33,36 @@ if ($curl_response === false) {
 }
 curl_close($curl);
 
-printf("------------------------------- \n");
-printf("core_course_get_courses_by_field\n");
-printf("------------------------------- \n");
-printf("ARGUMENTOS \n");
-printf("---------- \n");
-print_r($args);
-printf("---------- \n");
-printf("URL ENCODED \n");
-printf("---------- \n");
-print_r($url_str);
-printf("\n");
-printf("---------- \n");
-printf("RESPONSE \n");
-printf("---------- \n");
-print_r($curl_response);
-printf("\n");
-printf("Success!\n");
+$response_object = json_decode($curl_response);
+
+if (count($response_object->courses) == 0) {
+    printf("Course ".$args['value']." not found!\n");
+} else {    
+    printf("------------------------------- \n");
+    printf("core_course_get_courses_by_field\n");
+    printf("------------------------------- \n");
+    printf("ARGUMENTOS \n");
+    printf("---------- \n");
+    print_r($args);
+    printf("---------- \n");
+    printf("URL ENCODED \n");
+    printf("---------- \n");
+    print_r($url_str);
+    printf("\n");
+    printf("---------- \n");
+    printf("RESPONSE \n");
+    printf("---------- \n");
+    print_r($curl_response);
+    printf("\n");
+    printf("---------- \n");
+    printf("RESPONSE PHP \n");
+    printf("---------- \n");
+    print_r($response_object);
+    printf("---------------\n");
+    printf("ACCESS ELEMENTS \n");
+    printf("---------------\n");
+    printf("id:%s fullname:%s", $response_object->courses[0]->id, $response_object->courses[0]->fullname);
+    printf("\n");
+    printf("Success!\n");
+}
 ?>
