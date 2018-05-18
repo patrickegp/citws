@@ -13,7 +13,7 @@ $restformat = '&moodlewsrestformat=json';
 
 
 $list_students = array();
-$student = array('roleid' => 5, 'userid' => 11476, 'courseid' => 986);
+$student = array('roleid' => 5, 'userid' => 11478, 'courseid' => 986);
 $list_students[] = $student;
 
 $args = array('enrolments' => $list_students);

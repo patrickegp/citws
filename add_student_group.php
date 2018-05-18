@@ -12,7 +12,7 @@ $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&w
 $restformat = '&moodlewsrestformat=json';
 
 $list_members = array();
-$group = array('groupid' => 1583,  'userid' => 11475);
+$group = array('groupid' => 1583,  'userid' => 11478);
 $list_members[] = $group;
 
 $args = array('members' => $list_members);
