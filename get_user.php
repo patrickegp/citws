@@ -12,7 +12,7 @@ $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&w
 $restformat = '&moodlewsrestformat=json';
 
 $args = array('field' => 'username', 'values' => 
-	array('0' => 'jamarquez'));
+	array('0' => 'jamarquez2'));
 
 $url_str=http_build_query($args);
 $curl=curl_init($service_url . $restformat);
@@ -30,31 +30,36 @@ if ($curl_response === false) {
 }
 curl_close($curl);
 
-printf("------------------------------- \n");
-printf("core_user_get_users_by_field\n");
-printf("------------------------------- \n");
-printf("ARGUMENTOS \n");
-printf("---------- \n");
-print_r($args);
-printf("---------- \n");
-printf("URL ENCODED \n");
-printf("---------- \n");
-print_r($url_str);
-printf("\n");
-printf("---------- \n");
-printf("RESPONSE CURL \n");
-printf("---------- \n");
-print_r($curl_response);
-printf("\n");
-printf("---------- \n");
-printf("RESPONSE PHP \n");
-printf("---------- \n");
 $response_php = json_decode($curl_response);
-print_r($response_php);
-printf("---------- \n");
-printf("ACCESS ELEMENTS \n");
-printf("---------- \n");
-printf("username:%s firstname:%s", $response_php[0]->username, $response_php[0]->firstname);
-printf("\n");
-printf("Success!\n");
+if (empty($response_php)) {
+    printf("User not found!");
+    printf("\n");
+} else {
+    printf("------------------------------- \n");
+    printf("core_user_get_users_by_field\n");
+    printf("------------------------------- \n");
+    printf("ARGUMENTOS \n");
+    printf("---------- \n");
+    print_r($args);
+    printf("---------- \n");
+    printf("URL ENCODED \n");
+    printf("---------- \n");
+    print_r($url_str);
+    printf("\n");
+    printf("---------- \n");
+    printf("RESPONSE CURL \n");
+    printf("---------- \n");
+    print_r($curl_response);
+    printf("\n");
+    printf("---------- \n");
+    printf("RESPONSE PHP \n");
+    printf("---------- \n");
+    print_r($response_php);
+    printf("---------- \n");
+    printf("ACCESS ELEMENTS \n");
+    printf("---------- \n");
+    printf("username:%s firstname:%s", $response_php[0]->username, $response_php[0]->firstname);
+    printf("\n");
+    printf("Success!\n");
+}
 ?>
