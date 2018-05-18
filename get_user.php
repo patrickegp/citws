@@ -31,7 +31,7 @@ if ($curl_response === false) {
 curl_close($curl);
 
 printf("------------------------------- \n");
-printf("core_user_create_users\n");
+printf("core_user_get_users_by_field\n");
 printf("------------------------------- \n");
 printf("ARGUMENTOS \n");
 printf("---------- \n");
