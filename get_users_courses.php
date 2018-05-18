@@ -3,21 +3,17 @@
 	Webservice cliente para obtener datos del curso por medio del username
    ***********************************************************************
 */
-$domain='https://uao-sandbox.mrooms.net';
+$domain='https://test2.uao.edu.co/siga';
 
-$token='9eb8b1740608c41ffcf345a6210fc2b3';
+$token='98053706d7ba2a06464113449c068fdd';
 $function_name='core_enrol_get_users_courses';
 
 $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
 $restformat = '&moodlewsrestformat=json';
 
-$args['userid'] = '3006';
+$args['userid'] = '11478';
 
 $url_str=http_build_query($args);
-printf("*****ARGS*****\n");
-print_r($args);
-printf("*****URL*****\n");
-print_r($url_str);
 $curl=curl_init($service_url . $restformat);
 curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $url_str);
@@ -32,14 +28,26 @@ if ($curl_response === false) {
     die('error occured during curl exec. Additioanl info: ' . var_export($info));
 }
 curl_close($curl);
-printf("\n*****JSON RESPONSE *****\n");
-print_r($curl_response);
-printf("\n*****ARRAY RESPONSE *****\n");
-$response_json = json_decode($curl_response);
-var_dump($response_json);
-printf("\n*****CURSOS MATRICULADOS*****\n");
-foreach($response_json as $valor) {
-	var_dump($valor->shortname);	
+
+$response_object = json_decode($curl_response);
+if (isset($response_object->exception)) {
+    printf("Error!\n");
+    printf("Exception:%s\nErrorcode:%s\nMessage:%s", $response_object->exception, $response_object->errorcode, $response_object->message);
+    printf("\n");
+} else {
+    printf("*****ARGS*****\n");
+    print_r($args);
+    printf("*****URL*****\n");
+    print_r($url_str);
+    printf("\n*****JSON RESPONSE *****\n");
+    print_r($curl_response);
+    printf("\n*****ARRAY RESPONSE *****\n");
+    $response_json = json_decode($curl_response);
+    var_dump($response_json);
+    printf("\n*****CURSOS MATRICULADOS*****\n");
+    foreach($response_json as $valor) {
+        var_dump($valor->shortname);	
+    }
+    printf("\n*****READY! *****\n");
 }
-printf("\n*****READY! *****\n");
 ?>
