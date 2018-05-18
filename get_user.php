@@ -12,7 +12,7 @@ $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&w
 $restformat = '&moodlewsrestformat=json';
 
 $args = array('field' => 'username', 'values' => 
-	array('0' => 'jamarquez2'));
+	array('0' => 'jamarquez'));
 
 $url_str=http_build_query($args);
 $curl=curl_init($service_url . $restformat);
