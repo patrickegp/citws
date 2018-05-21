@@ -13,7 +13,7 @@ $restformat = '&moodlewsrestformat=json';
 
 
 $list_students = array();
-$student = array('userid' => 11476,  'courseid' => 986, 'roleid' => 5);
+$student = array('userid' => 467,  'courseid' => 986, 'roleid' => 5);
 $list_students[] = $student;
 
 $args = array('enrolments' => $list_students);
@@ -34,21 +34,29 @@ if ($curl_response === false) {
 }
 curl_close($curl);
 
-printf("------------------------------- \n");
-printf("enrol_manual_enrol_users\n");
-printf("------------------------------- \n");
-printf("ARGUMENTOS \n");
-printf("---------- \n");
-print_r($args);
-printf("---------- \n");
-printf("URL ENCODED \n");
-printf("---------- \n");
-print_r($url_str);
-printf("\n");
-printf("---------- \n");
-printf("RESPONSE \n");
-printf("---------- \n");
-print_r($curl_response);
-printf("\n");
-printf("Success!\n");
+$response_object = json_decode($curl_response);
+
+if (isset($response_object->exception)) {
+    printf("Exception!\n");
+    print_r($curl_response);
+    printf("\n");
+} else {
+    printf("------------------------------- \n");
+    printf("enrol_manual_unenrol_users\n");
+    printf("------------------------------- \n");
+    printf("ARGUMENTOS \n");
+    printf("---------- \n");
+    print_r($args);
+    printf("---------- \n");
+    printf("URL ENCODED \n");
+    printf("---------- \n");
+    print_r($url_str);
+    printf("\n");
+    printf("---------- \n");
+    printf("RESPONSE \n");
+    printf("---------- \n");
+    print_r($curl_response);
+    printf("\n");
+    printf("Success!\n");
+}
 ?>
