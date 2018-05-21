@@ -11,9 +11,15 @@ $function_name='enrol_manual_enrol_users';
 $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
 $restformat = '&moodlewsrestformat=json';
 
+$inicio = "21-05-2018";
+$fin = "24-05-2018";
 
 $list_students = array();
-$student = array('roleid' => 5, 'userid' => 11478, 'courseid' => 986);
+$student = array('roleid' => 5,
+                'userid' => 11476, 'courseid' => 986,
+                'timestart' => strtotime($inicio),
+                'timeend' => strtotime($fin));
+                
 $list_students[] = $student;
 
 $args = array('enrolments' => $list_students);
@@ -34,21 +40,29 @@ if ($curl_response === false) {
 }
 curl_close($curl);
 
-printf("------------------------------- \n");
-printf("enrol_manual_enrol_users\n");
-printf("------------------------------- \n");
-printf("ARGUMENTOS \n");
-printf("---------- \n");
-print_r($args);
-printf("---------- \n");
-printf("URL ENCODED \n");
-printf("---------- \n");
-print_r($url_str);
-printf("\n");
-printf("---------- \n");
-printf("RESPONSE \n");
-printf("---------- \n");
-print_r($curl_response);
-printf("\n");
-printf("Success!\n");
+$response_object = json_decode($curl_response);
+if (isset($response_object->exception)) {
+    printf("Exception!\n");
+    print_r($response_object);
+} else {
+    printf("------------------------------- \n");
+    printf("enrol_manual_enrol_users\n");
+    printf("------------------------------- \n");
+    printf("ARGUMENTOS \n");
+    printf("---------- \n");
+    print_r($args);
+    printf("---------- \n");
+    printf("URL ENCODED \n");
+    printf("---------- \n");
+    print_r($url_str);
+    printf("\n");
+    printf("---------- \n");
+    printf("RESPONSE \n");
+    printf("---------- \n");
+    print_r($curl_response);
+    printf("\n");
+    printf("Success!\n");
+}
+
+return;
 ?>
