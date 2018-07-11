@@ -3,11 +3,8 @@
 	Webservice cliente para obtener datos del curso por medio del username
    ***********************************************************************
 */
-//$domain='https://virtual.uao.edu.co';
-$domain='https://test2.uao.edu.co/siga';
-// $token='9eb8b1740608c41ffcf345a6210fc2b3';
-// $token='e9f71033769b939f330fb85dd60c2172';
-$token='98053706d7ba2a06464113449c068fdd';
+$domain='https://siga.uao.edu.co/moodle';
+$token='2f550433ec43fc9c55fb45cfe79e95f0';
 $function_name='core_course_get_courses_by_field';
 
 $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
