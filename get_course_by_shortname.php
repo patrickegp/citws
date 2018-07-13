@@ -1,13 +1,14 @@
 <?php
+include "conf.php";
 /* ***********************************************************************
 	Webservice cliente para obtener datos del curso por medio del username
    ***********************************************************************
 */
-$domain='https://siga.uao.edu.co/moodle';
+// $domain='https://siga.uao.edu.co/moodle';
 $token='2f550433ec43fc9c55fb45cfe79e95f0';
 $function_name='core_course_get_courses_by_field';
 
-$service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
+$service_url = DOMAIN. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
 $restformat = '&moodlewsrestformat=json';
 
 $args['field'] = 'shortname';
