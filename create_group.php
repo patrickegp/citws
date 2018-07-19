@@ -6,13 +6,13 @@
 $service_url = 'https://test2.uao.edu.co/siga/webservice/rest/server.php';
 $domain='https://test2.uao.edu.co/siga';
 
-$token = '98053706d7ba2a06464113449c068fdd';
+$token = '2f550433ec43fc9c55fb45cfe79e95f0';
 $function_name='core_group_create_groups';
 $service_url=$domain. '/webservice/rest/server.php' . '?wstoken=' . $token . '&wsfunction=' . $function_name;
 $restformat = '&moodlewsrestformat=json';
 
 $list_groups = array();
-$group = array('courseid' => 986,  'name' => 'grupo2', 'description' => 'grupo2');
+$group = array('courseid' => 1082,  'name' => 'grupo Z', 'description' => 'grupo Z defini');
 $list_groups[] = $group;
 
 $args = array('groups' => $list_groups);

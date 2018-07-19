@@ -5,12 +5,12 @@
 */
     $domain = 'https://test2.uao.edu.co/siga';
     $function_name = 'core_group_get_course_groups';
-    $token = '98053706d7ba2a06464113449c068fdd';
+    $token = '2f550433ec43fc9c55fb45cfe79e95f0';
 
     $service_url = $domain.'/webservice/rest/server.php'.'?wstoken='.$token.'&wsfunction='.$function_name;
     $restformat = '&moodlewsrestformat=json';
     
-    $args['courseid'] = 986;
+    $args['courseid'] = 1085;
     $url_str=http_build_query($args);
     
     $curl=curl_init($service_url . $restformat);
@@ -29,6 +29,8 @@
     
     curl_close($curl);
     
+    $response_object = json_decode($curl_response);
+    
     printf("------------------------------- \n");
     printf("core_course_get_course_groups\n");
     printf("------------------------------- \n");
@@ -44,6 +46,22 @@
     printf("RESPONSE \n");
     printf("---------- \n");
     print_r($curl_response);
+    
     printf("\n");
+    
+    if (isset($response_object->exception)) {    
+        printf("---------- \n");
+        printf("EXCEPTION \n");
+        printf("---------- \n");
+
+        $data = array("status" => "failed", "service" => "addmembertogroup", "message" => $response_object->message);
+    } else {
+        var_dump($response_object);
+        
+        if (count($response_object) == 0) {
+            printf("no hay grupos! \n");
+        }
+    }
+    
     printf("Success!\n");    
 ?>
