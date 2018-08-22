@@ -10,7 +10,7 @@
     $service_url = $domain.'/webservice/rest/server.php'.'?wstoken='.$token.'&wsfunction='.$function_name;
     $restformat = '&moodlewsrestformat=json';
     
-    $args['courseid'] = 1085;
+    $args['courseid'] = 1082;
     $url_str=http_build_query($args);
     
     $curl=curl_init($service_url . $restformat);
